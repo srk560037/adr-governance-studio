@@ -1,6 +1,6 @@
 # ADR Governance Studio 🏛️
 
-**ADR Governance Studio** is an enterprise-grade solution for managing, linting, and visualizing **Architecture Decision Records (ADRs)** directly within Git workflows. It bridges developer-centric Markdown files in version control with executive-level architecture governance, dependency graphing, and CI/CD compliance guardrails.
+**ADR Governance Studio** is an enterprise-grade solution for managing, linting, and visualizing **Architecture Decision Records (ADRs)** directly within Git workflows. It bridges developer-centric Markdown files in version control with executive-level architecture governance, dependency graphing, and CI/CD compliance guardrails. Test
 
 ---
 
