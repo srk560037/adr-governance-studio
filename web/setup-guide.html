@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ADR Governance Studio — Developer Setup & Run Guide</title>
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-hover: #1d4ed8;
+            --bg: #f8fafc;
+            --card-bg: #ffffff;
+            --text: #0f172a;
+            --text-muted: #475569;
+            --border: #e2e8f0;
+            --code-bg: #0f172a;
+            --code-text: #f8fafc;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            margin: 0;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: var(--card-bg);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            border: 1px solid var(--border);
+        }
+
+        .header-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid var(--border);
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+
+        h1 {
+            font-size: 1.8rem;
+            margin: 0;
+            color: var(--text);
+        }
+
+        .btn-print {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 10px 18px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .btn-print:hover {
+            background-color: var(--primary-hover);
+        }
+
+        h2 {
+            font-size: 1.3rem;
+            color: var(--primary);
+            margin-top: 30px;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 6px;
+        }
+
+        h3 {
+            font-size: 1.05rem;
+            margin-top: 20px;
+            color: var(--text);
+        }
+
+        p, li {
+            color: var(--text-muted);
+            font-size: 0.98rem;
+        }
+
+        ul, ol {
+            padding-left: 24px;
+        }
+
+        pre {
+            background-color: var(--code-bg);
+            color: var(--code-text);
+            padding: 16px;
+            border-radius: 8px;
+            overflow-x: auto;
+            font-family: "Courier New", Courier, monospace;
+            font-size: 0.9rem;
+        }
+
+        code {
+            font-family: "Courier New", Courier, monospace;
+            background-color: #f1f5f9;
+            color: #0f172a;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.9em;
+        }
+
+        pre code {
+            background-color: transparent;
+            color: inherit;
+            padding: 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            margin-bottom: 25px;
+        }
+
+        th, td {
+            text-align: left;
+            padding: 12px;
+            border: 1px solid var(--border);
+            font-size: 0.95rem;
+        }
+
+        th {
+            background-color: #f1f5f9;
+            color: var(--text);
+        }
+
+        .note {
+            background-color: #eff6ff;
+            border-left: 4px solid var(--primary);
+            padding: 12px 16px;
+            margin: 20px 0;
+            border-radius: 0 6px 6px 0;
+            font-size: 0.93rem;
+        }
+
+        /* Print styles to cleanly format output for PDF export */
+        @media print {
+            body {
+                background-color: #ffffff;
+                padding: 0;
+            }
+            .container {
+                box-shadow: none;
+                border: none;
+                padding: 0;
+                max-width: 100%;
+            }
+            .btn-print {
+                display: none;
+            }
+            pre {
+                white-space: pre-wrap;
+                word-break: break-all;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header-actions">
+        <h1>ADR Governance Studio Setup Guide</h1>
+        <button class="btn-print" onclick="window.print()">Print / Save as PDF</button>
+    </div>
+
+    <p>This guide provides complete instructions for setting up the local development environment, installing required tools, configuring environment variables, running tests, and executing the FastAPI application.</p>
+
+    <h2>1. Prerequisites & Required Tools</h2>
+    
+    <h3>Python 3.10+</h3>
+    <ul>
+        <li>Download and run the installer from <a href="https://www.python.org/" target="_blank">python.org</a>.</li>
+        <li><strong>Important:</strong> Check the box for <code>Add python.exe to PATH</code> during installation.</li>
+        <li>Verify installation: <code>python --version</code></li>
+    </ul>
+
+    <h3>Git</h3>
+    <ul>
+        <li>Download and install <a href="https://git-scm.com/" target="_blank">Git for Windows</a>.</li>
+        <li>Verify installation: <code>git --version</code></li>
+    </ul>
+
+    <h2>2. Repository & Virtual Environment Setup</h2>
+    <p>Open PowerShell and navigate to the backend directory:</p>
+    <pre><code>cd C:\Repository\adr-governance-studio\backend
+
+# 1. Create Virtual Environment
+python -m venv venv
+
+# 2. Activate Virtual Environment
+.\venv\Scripts\Activate.ps1
+
+# 3. Install Required Dependencies
+python -m pip install --upgrade pip
+pip install fastapi uvicorn python-dotenv pytest pytest-cov</code></pre>
+
+    <div class="note">
+        <strong>PowerShell Tip:</strong> If script execution is restricted, run <code>Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope Process</code> in your PowerShell session before activating the environment.
+    </div>
+
+    <h2>3. Configuration Files</h2>
+
+    <h3>Environment File (<code>.env</code>)</h3>
+    <p>Create a <code>.env</code> file directly under <code>backend/</code> with the following content:</p>
+    <pre><code>GITHUB_WEBHOOK_SECRET=development_secret
+ENVIRONMENT=development
+PORT=8000</code></pre>
+
+    <h3>Governance Policy File (<code>governance_policy.json</code>)</h3>
+    <p>Ensure <code>governance_policy.json</code> exists in the <code>backend/</code> folder:</p>
+    <pre><code>{
+  "policy_version": "1.0",
+  "rules": [
+    {
+      "id": "ADR-001",
+      "name": "Mandatory Status Section",
+      "required": true
+    }
+  ]
+}</code></pre>
+
+    <h2>4. Testing & Pre-Flight Health Checks</h2>
+    <p>The system enforces a <strong>90% code coverage threshold</strong> before starting up.</p>
+    <pre><code># Run unit tests directly
+python -m pytest -vv
+
+# Run unit tests with code coverage report
+python -m pytest --cov=main --cov-report=term-missing</code></pre>
+
+    <h2>5. Running the Application</h2>
+
+    <h3>Automated Launch (Recommended)</h3>
+    <pre><code>.\start-backend.ps1</code></pre>
+
+    <h3>Direct Server Launch</h3>
+    <pre><code>python -m uvicorn main:app --reload --host 127.0.0.1 --port 8000</code></pre>
+
+    <h2>6. Available Endpoints & Documentation</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Resource</th>
+                <th>Method</th>
+                <th>URL</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>Health Check</strong></td>
+                <td>GET</td>
+                <td><code>http://127.0.0.1:8000/health</code></td>
+            </tr>
+            <tr>
+                <td><strong>GitHub Webhook</strong></td>
+                <td>POST</td>
+                <td><code>http://127.0.0.1:8000/v1/webhooks/github</code></td>
+            </tr>
+            <tr>
+                <td><strong>Swagger UI Docs</strong></td>
+                <td>GET</td>
+                <td><code>http://127.0.0.1:8000/docs</code></td>
+            </tr>
+            <tr>
+                <td><strong>ReDoc UI Docs</strong></td>
+                <td>GET</td>
+                <td><code>http://127.0.0.1:8000/redoc</code></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>
